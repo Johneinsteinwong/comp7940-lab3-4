@@ -1,10 +1,10 @@
-import telegram
-from telegram.ext import Updater, MessageHandler, Filters
+from telegram import Update
+from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
 import configparser
 import logging
 
 
-def echo(update, context):
+def echo(update: Update, context: CallbackContext) -> None:
     reply_message = update.message.text.upper()
     logging.info("Update: " + str(update))
     logging.info("Context: " + str(context))
