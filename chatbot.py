@@ -30,6 +30,14 @@ def add(update: Update, context: CallbackContext) -> None:
     except (IndexError, ValueError):
         update.message.reply_text('Usage: /add <keyword>')
 
+def hello_command(update: Update, context: CallbackContext) -> None:
+    try:
+        name = context.args[0]
+        logging.info(name)
+        update.message.reply_text(f'Good day, {name}!')
+    except (IndexError, ValueError):
+        update.message.reply_text('Usage: /hello <name>')
+
 def equiped_chatgpt(update: Update, context: CallbackContext) -> None:
     global chatgpt
     reply_message = chatgpt.submit(update.message.text)
@@ -64,6 +72,7 @@ def main():
 
     dispatcher.add_handler(CommandHandler('add',add))
     dispatcher.add_handler(CommandHandler('help',help_command))
+    dispatcher.add_handler(CommandHandler('hello',hello_command))
 
 
 
